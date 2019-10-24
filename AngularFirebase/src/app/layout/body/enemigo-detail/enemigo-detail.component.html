@@ -1,0 +1,30 @@
+<mat-card class="example-card mat-elevation-z8" *ngIf="enemigo && !isLoading; else loadingNoData">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{enemigo.Name}}</mat-card-title>
+        <mat-card-subtitle>Edad {{enemigo.Edad}}</mat-card-subtitle>
+    </mat-card-header>
+    <img imagen-principal src="../../../app/images/{{enemigo.Name}}.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        <mat-card-title>Desccripción</mat-card-title>
+        <p>
+        {{enemigo.Description}}
+        </p>
+        <h4>Ha sido derrotado:</h4><mat-card-subtitle>{{enemigo.Derrotas}} veces.</mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-actions>
+            <button mat-button (click)="goBack()">Back</button>
+          </mat-card-actions>
+</mat-card>
+
+<ng-template #loadingNoData>
+    <ng-container *ngIf="isLoading; else noData">
+        <mat-spinner class="spinner"></mat-spinner>
+    </ng-container>
+    <ng-template #noData>
+        <h1>No data</h1>
+    </ng-template>
+</ng-template>
+
+
+

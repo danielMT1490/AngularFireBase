@@ -1,39 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+//importamos nuestros modulo de http
+import { HttpClientModule } from "@angular/common/http";
+//para hacer las peticiones instalamos un servidor ficticio
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+//esta interface es un servicio donde diremos lo que debe responder el servidor
+import { InMemoryDataService }  from './Services/in-memory-data.service'; 
+
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //importamos modulo de angular material
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import { MyNavComponent } from './my-nav/my-nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import { MyDashComponent } from './my-dash/my-dash.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
+import { LayoutModule } from './layout/layout.module';
+//importamos modulos de firebase para autentificacion
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireModule } from "@angular/fire";
+import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyNavComponent,
-    MyDashComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
     LayoutModule,
-    MatSidenavModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

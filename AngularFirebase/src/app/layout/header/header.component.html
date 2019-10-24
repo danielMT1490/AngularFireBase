@@ -1,0 +1,21 @@
+<mat-toolbar color="warn">
+    <mat-toolbar-row>
+      <span>Tus enemigos</span>
+      <span class="example-spacer"></span>
+      <mat-icon 
+        class="example-icon" 
+        aria-hidden="false" 
+        aria-label="Example user verified icon" 
+        [color]="checked ? 'primary' : ''">verified_user</mat-icon>
+      <section class="example-section">
+          <mat-slide-toggle
+              class="example-margin"
+              [color]="color"
+              [checked]="checked"
+              [disabled]="disabled"
+              (change)="changeChecked()">
+            {{text}}
+          </mat-slide-toggle>
+        </section>
+    </mat-toolbar-row>
+  </mat-toolbar>
